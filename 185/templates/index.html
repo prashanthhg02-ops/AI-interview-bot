@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#eff3e8">
+  <title>Practice Room | AIML Interview Coach</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Practice Room home">
+      <span class="brand-mark" aria-hidden="true">P<span>.</span></span>
+      <span>practice room</span>
+    </a>
+    <div class="topbar-meta">
+      <span class="engine-label"><span class="status-dot"></span>AIML ENGINE</span>
+      <span class="topbar-divider" aria-hidden="true"></span>
+      <span class="local-label">LOCAL SESSION</span>
+    </div>
+  </header>
+
+  <main class="workspace">
+    <aside class="sidebar" aria-label="Interview progress">
+      <div class="sidebar-heading">
+        <p class="eyebrow">YOUR SESSION</p>
+        <h1>Mock interview</h1>
+        <p class="sidebar-copy">A focused practice round, one question at a time.</p>
+      </div>
+
+      <div class="progress-block">
+        <div class="progress-heading">
+          <span>ROUND PROGRESS</span>
+          <span id="progress-count">0 / 5</span>
+        </div>
+        <div class="progress-track"><span id="progress-fill"></span></div>
+      </div>
+
+      <ol class="steps" id="steps">
+        <li class="step" data-stage="role"><span class="step-marker">01</span><span>Role & focus</span></li>
+        <li class="step" data-stage="experience"><span class="step-marker">02</span><span>Experience</span></li>
+        <li class="step" data-stage="project"><span class="step-marker">03</span><span>Project story</span></li>
+        <li class="step" data-stage="challenge"><span class="step-marker">04</span><span>Challenge</span></li>
+        <li class="step" data-stage="strength"><span class="step-marker">05</span><span>Your strength</span></li>
+      </ol>
+
+      <div class="sidebar-note">
+        <span class="note-icon" aria-hidden="true">✳</span>
+        <p><strong>Keep it specific.</strong><br>Concrete examples make answers easier to remember and evaluate.</p>
+      </div>
+    </aside>
+
+    <section class="interview" aria-label="Interview chat">
+      <div class="interview-header">
+        <div>
+          <p class="eyebrow">LIVE PRACTICE</p>
+          <h2>Interview room</h2>
+        </div>
+        <button class="text-button" id="restart-button" type="button" disabled>Start new round <span aria-hidden="true">↗</span></button>
+      </div>
+
+      <div class="chat-shell">
+        <div class="messages" id="messages" aria-live="polite" aria-relevant="additions">
+          <div class="welcome" id="welcome">
+            <div class="welcome-symbol" aria-hidden="true"><span></span><span></span><span></span></div>
+            <p class="eyebrow">READY WHEN YOU ARE</p>
+            <h3>Make the next<br>answer your best.</h3>
+            <p class="welcome-copy">Practice common interview questions and get a simple framework for sharper answers.</p>
+            <button class="start-button" id="start-button" type="button"><span>Begin interview</span><span aria-hidden="true">↗</span></button>
+            <span class="welcome-footnote">5 QUESTIONS <span>·</span> ABOUT 5 MINUTES</span>
+          </div>
+        </div>
+
+        <form class="composer" id="composer">
+          <label class="sr-only" for="answer">Your answer</label>
+          <textarea id="answer" name="answer" rows="1" maxlength="1000" placeholder="Start the interview to answer…" disabled></textarea>
+          <div class="composer-footer">
+            <span id="composer-hint">Your practice stays in this session.</span>
+            <button class="send-button" type="submit" disabled><span>Send answer</span><span aria-hidden="true">↑</span></button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <script src="{{ url_for('static', filename='app.js') }}" defer></script>
+</body>
+</html>

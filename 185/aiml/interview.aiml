@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="1.0.1" encoding="UTF-8">
+  <category>
+    <pattern>START INTERVIEW</pattern>
+    <template>
+      <think>
+        <set name="stage">role</set>
+        <set name="turn">0</set>
+      </think>
+      Hi, I'm your AIML interview coach. What role are you preparing for?
+    </template>
+  </category>
+
+  <category>
+    <pattern>REPEAT</pattern>
+    <template>
+      <condition name="stage">
+        <li value="role">What role are you preparing for?</li>
+        <li value="experience">How many years of experience do you have in this field?</li>
+        <li value="project">Tell me about a project you're proud of. What was your contribution?</li>
+        <li value="challenge">Describe a difficult challenge at work and how you handled it.</li>
+        <li value="strength">What is one strength you'd bring to this role? Give a specific example.</li>
+        <li value="complete">Your interview is complete. Type START INTERVIEW to begin another round.</li>
+        <li>Please start an interview first.</li>
+      </condition>
+    </template>
+  </category>
+
+  <category>
+    <pattern>HELP</pattern>
+    <template>Try answering the current question with one specific example. Type REPEAT if you'd like to hear it again.</template>
+  </category>
+
+  <category>
+    <pattern>*</pattern>
+    <template>
+      <condition name="stage">
+        <li value="role">
+          <think>
+            <set name="role"><star/></set>
+            <set name="stage">experience</set>
+            <set name="turn">1</set>
+          </think>
+          Got it: <get name="role"/>. How many years of experience do you have in this field?
+        </li>
+        <li value="experience">
+          <think>
+            <set name="experience"><star/></set>
+            <set name="stage">project</set>
+            <set name="turn">2</set>
+          </think>
+          Thanks for sharing that. Tell me about a project you're proud of. What was your contribution?
+        </li>
+        <li value="project">
+          <think>
+            <set name="project"><star/></set>
+            <set name="stage">challenge</set>
+            <set name="turn">3</set>
+          </think>
+          I have that down. Describe a difficult challenge at work and how you handled it.
+        </li>
+        <li value="challenge">
+          <think>
+            <set name="challenge"><star/></set>
+            <set name="stage">strength</set>
+            <set name="turn">4</set>
+          </think>
+          Thank you. What is one strength you'd bring to this role? Give a specific example.
+        </li>
+        <li value="strength">
+          <think>
+            <set name="strength"><star/></set>
+            <set name="stage">complete</set>
+            <set name="turn">5</set>
+          </think>
+          That's the final question. You completed a practice interview for <get name="role"/>. For stronger answers, use the STAR structure: describe the situation, your task, the action you took, and the result. Add a measurable outcome where you can. Type START INTERVIEW to practice again.
+        </li>
+        <li value="complete">This round is complete. Type START INTERVIEW to begin another round.</li>
+        <li>Please type START INTERVIEW to begin your mock interview.</li>
+      </condition>
+    </template>
+  </category>
+</aiml>
